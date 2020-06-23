@@ -1,4 +1,4 @@
-## Ingress LB GCP global loadbalancer with Static external IP public + SSL managed by GCP ##
+\## Ingress LB GCP global loadbalancer with Static external IP public + SSL managed by GCP ##
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -26,20 +26,23 @@ spec:
             servicePort: 80
     - host: api.abdidarmawan.com
       http:
-        paths: /v1/*
-        - backend:
+        paths:
+        - path: /v1/*
+          backend:
             serviceName: production-api
             servicePort: 80
     - host: api.abdidarmawan.com
       http:
-        paths: /v2/email/*
-        - backend:
+        paths: 
+        - path: /v2/email/*
+          backend:
             serviceName: production-api-email
             servicePort: 80
     - host: api.abdidarmawan.com
       http:
-        paths: /v2/push/*
-        - backend:
+        paths:
+        - path: /v2/push/*
+          backend:
             serviceName: production-api-push
             servicePort: 80         
     - host: blog.abdidarmawan.com
@@ -47,4 +50,4 @@ spec:
         paths:
         - backend:
             serviceName: production-blog
-            servicePort: 80        
+            servicePort: 80
