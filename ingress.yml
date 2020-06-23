@@ -26,19 +26,19 @@ spec:
             servicePort: 80
     - host: api.abdidarmawan.com
       http:
-        paths:
+        paths: /v1/*
         - backend:
             serviceName: production-api
             servicePort: 80
     - host: api.abdidarmawan.com
       http:
-        paths: /v1/email/*
+        paths: /v2/email/*
         - backend:
             serviceName: production-api-email
             servicePort: 80
     - host: api.abdidarmawan.com
       http:
-        paths: /v1/push/*
+        paths: /v2/push/*
         - backend:
             serviceName: production-api-push
             servicePort: 80         
