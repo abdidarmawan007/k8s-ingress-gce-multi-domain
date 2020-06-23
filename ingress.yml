@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: prod-konsula
+  name: produdction-abdi
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "production-ip-ingress"  # config for global static IP public
     ingress.gcp.kubernetes.io/pre-shared-cert: "ssl-gke-frontend-redirect,ssl-gke-frontend,ssl-gke-api,ssl-gke-blog"  # config for ssl managed by gcp
