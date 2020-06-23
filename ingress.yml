@@ -1,0 +1,38 @@
+## Ingress LB GCP global loadbalancer with Static external IP public + SSL managed by GCP ##
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prod-konsula
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "production-ip-ingress"  # config for global static IP public
+    ingress.gcp.kubernetes.io/pre-shared-cert: "ssl-gke-frontend-redirect,ssl-gke-frontend,ssl-gke-api,ssl-gke-blog"  # config for ssl managed by gcp
+    ## create ip public via gcp console and add name ip ##
+    # gcloud beta compute --project=(your project) addresses create production-ip-ingress --global --network-tier=PREMIUM
+    ## create ssl for ingress ##
+    # gcloud beta compute ssl-certificates create ssl-gke-frontend --domains (your domain) --global
+spec:
+  rules:
+    - host: abdidarmawan.com
+      http:
+        paths:
+        - backend:
+            serviceName: production-frontend-redirect-www
+            servicePort: 80
+    - host: www.abdidarmawan.com
+      http:
+        paths:
+        - backend:
+            serviceName: production-frontend
+            servicePort: 80
+    - host: api.abdidarmawan.com
+      http:
+        paths:
+        - backend:
+            serviceName: production-api
+            servicePort: 80
+    - host: blog.abdidarmawan.com
+      http:
+        paths:
+        - backend:
+            serviceName: production-blog
+            servicePort: 80        
