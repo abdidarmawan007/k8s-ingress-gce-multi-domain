@@ -1,4 +1,4 @@
-\## Ingress LB GCP global loadbalancer with Static external IP public + SSL managed by GCP ##
+## Ingress LB GCP global loadbalancer with Static external IP public + SSL managed by GCP ##
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
