@@ -38,7 +38,11 @@ spec:
         - path: /v2/push/*
           backend:
             serviceName: production-api-push
-            servicePort: 80         
+            servicePort: 80
+        - path: /v2/customer/*
+          backend:
+            serviceName: production-api-customer
+            servicePort: 80
     - host: blog.abdidarmawan.com
       http:
         paths:
