@@ -5,7 +5,7 @@ metadata:
   name: produdction-abdi
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "production-ip-ingress"  # config for global static IP public
-    ingress.gcp.kubernetes.io/pre-shared-cert: "ssl-gke-frontend-redirect,ssl-gke-frontend,ssl-gke-api,ssl-gke-blog"  # config for ssl managed by gcp
+    ingress.gcp.kubernetes.io/pre-shared-cert: "ssl-gke-frontend-redirect,ssl-gke-frontend,ssl-gke-api,ssl-gke-blog,ssl-gke-kangsapu"  # config for ssl managed by gcp
     ## create ip public via gcp console and add name ip ##
     # gcloud beta compute --project=(your project) addresses create production-ip-ingress --global --network-tier=PREMIUM
     ## create ssl for ingress ##
@@ -45,3 +45,9 @@ spec:
         - backend:
             serviceName: production-blog
             servicePort: 80
+    - host: kangsapu.com
+      http:
+        paths:
+        - backend:
+            serviceName: production-kangsapu
+            servicePort: 80        
