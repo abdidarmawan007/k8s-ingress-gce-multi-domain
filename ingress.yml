@@ -4,6 +4,7 @@ kind: Ingress
 metadata:
   name: production-abdi
   annotations:
+    kubernetes.io/ingress.class: "gce" # GCP Global Loadbalancer
     kubernetes.io/ingress.global-static-ip-name: "production-ip-ingress"  # config for global static IP public
     ingress.gcp.kubernetes.io/pre-shared-cert: "ssl-gke-frontend-redirect,ssl-gke-frontend,ssl-gke-api,ssl-gke-blog,ssl-gke-kangsapu"  # config for ssl managed by gcp
     ## create ip public via gcp console and add name ip ##
