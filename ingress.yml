@@ -27,7 +27,7 @@ spec:
     - host: api.abdidarmawan.com
       http:
         paths:
-        - path: /v1/*
+        - path: /*
           backend:
             serviceName: production-api
             servicePort: 80
