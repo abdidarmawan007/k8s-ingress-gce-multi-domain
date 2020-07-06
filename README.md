@@ -4,7 +4,7 @@
 - GKE clusters have a limit of 1000 nodes. When services are deployed with NEGs, there is no GKE node limit
 - Combining multiple Ingress resources into a single Google Cloud load balancer is not supported
 
-### Url for increase quota ingress for url maps,ssl etc
+### url for increase quota ingress for url maps,ssl etc
 ```
 https://cloud.google.com/load-balancing/docs/quotas#url_maps
 https://cloud.google.com/load-balancing/docs/quotas#ssl_certificates
