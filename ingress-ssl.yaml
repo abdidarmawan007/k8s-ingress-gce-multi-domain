@@ -1,0 +1,11 @@
+apiVersion: networking.gke.io/v1beta2
+kind: ManagedCertificate
+metadata:
+  name: production-ingress-ssl
+spec:
+  domains:
+    - abdidarmawan.com
+    - www.abdidarmawan.com
+    - api.abdidarmawan.com
+    - blog.abdidarmawan.com
+    - kangsapu.com
