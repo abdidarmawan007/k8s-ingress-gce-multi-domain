@@ -1,3 +1,4 @@
+# The difference between v1beta1 and v1beta2 is only in validation allowing more domain names per certificate
 apiVersion: networking.gke.io/v1beta2
 kind: ManagedCertificate
 metadata:
