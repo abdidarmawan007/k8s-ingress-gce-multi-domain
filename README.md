@@ -1,4 +1,4 @@
-## k8s ingress gce multi domain and ssl
+## k8s ingress gce multi domain and managed ssl
 - Minimum version 1.16.5-gke.1  for support version v1beta2
 - The maximum number of rules for a URL map is 50. This means that you can specify a maximum of 50 rules in an Ingress
 - Managed certificates support up to 100 non-wildcard domains, whereas self-managed certificates can support wildcards
