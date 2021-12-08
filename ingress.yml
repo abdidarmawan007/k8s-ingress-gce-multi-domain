@@ -1,61 +1,80 @@
-## Ingress LB GCP global loadbalancer with Static external IP public + SSL managed by GCP ##
-#apiVersion: networking.k8s.io/v1beta1
+# ingress gce
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  namespace: production
   name: production-abdi
   annotations:
-    kubernetes.io/ingress.class: "gce" # GCP Global Loadbalancer L7
-    kubernetes.io/ingress.global-static-ip-name: "production-ip-ingress"  # config for global static IP public
-    networking.gke.io/managed-certificates: "production-ingress-ssl"  # config for ssl managed by gcp 
-    ## create ip public via gcp console and add name ip ##
-    # gcloud beta compute --project=(your project) addresses create production-ip-ingress --global --network-tier=PREMIUM
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "production-ingress-ip"
+    networking.gke.io/managed-certificates: "production-ingress-ssl-1,production-ingress-ssl-2,production-ingress-ssl-3,production-ingress-ssl-4"
 spec:
   rules:
-    - host: abdidarmawan.com
+    - host: "www.abdidarmawan.com"
       http:
         paths:
-        - backend:
-            serviceName: production-frontend-redirect-www
-            servicePort: 3131
-    - host: www.abdidarmawan.com
+        - path: "/*"
+          pathType: ImplementationSpecific # (Exact,Prefix or ImplementationSpecific)
+          backend:
+            service:
+              name: production-frontend
+              port:
+                number: 8080
+    - host: "blog.abdidarmawan.com"
       http:
         paths:
-        - backend:
-            serviceName: production-frontend
-            servicePort: 3131
-    - host: api.abdidarmawan.com
+        - path: "/*"
+          pathType: ImplementationSpecific # (Exact,Prefix or ImplementationSpecific)
+          backend:
+            service:
+              name: production-blog
+              port:
+                number: 8080
+    - host: "dashboard.abdidarmawan.id"
       http:
         paths:
-        - path: /v1/*
+        - path: "/*"
+          pathType: ImplementationSpecific # (Exact,Prefix or ImplementationSpecific)
           backend:
-            serviceName: production-api-legacy
-            servicePort: 3131
-        - path: /v2/email/*
-          backend:
-            serviceName: production-api-email
-            servicePort: 3131
-        - path: /v2/push/*
-          backend:
-            serviceName: production-api-push
-            servicePort: 3131
-        - path: /v2/customer/*
-          backend:
-            serviceName: production-api-customer
-            servicePort: 3131
-        - path: /v2/register/*
-          backend:
-            serviceName: production-api-register
-            servicePort: 3131     
-    - host: blog.abdidarmawan.com
+            service:
+              name: production-dasboard
+              port:
+                number: 8080         
+    - host: "api.abdidarmawan.com"
       http:
         paths:
-        - backend:
-            serviceName: production-blog
-            servicePort: 3131
-    - host: kangsapu.com
-      http:
-        paths:
-        - backend:
-            serviceName: production-kangsapu
-            servicePort: 3131        
+        - path: "/v1/"
+          pathType: Prefix # (Exact,Prefix or ImplementationSpecific)
+          backend:
+            service:
+              name: production-api-legacy
+              port:
+                number: 8080
+        - path: "/v2/email/"
+          pathType: Prefix # (Exact,Prefix or ImplementationSpecific)
+          backend:
+            service:
+              name: production-api-email
+              port:
+                number: 8080
+        - path: "/v2/push/"
+          pathType: Prefix # (Exact,Prefix or ImplementationSpecific)
+          backend:
+            service:
+              name: production-api-push
+              port:
+                number: 8080
+        - path: "/v2/customer/"
+          pathType: Prefix # (Exact,Prefix or ImplementationSpecific)
+          backend:
+            service:
+              name: production-api-customer
+              port:
+                number: 8080
+        - path: "/v2/register/"
+          pathType: Prefix # (Exact,Prefix or ImplementationSpecific)
+          backend:
+            service:
+              name: production-api-register
+              port:
+                number: 8080
