@@ -1,13 +1,32 @@
-# The difference between v1beta1 and v1beta2 is only in validation allowing more domain names per certificate
-# Google-managed SSL certificates not support wildcard like *.abdidarmawan.com
+# ssl managed gcp
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: production-ingress-ssl
+  name: production-ingress-ssl-1
 spec:
   domains:
-    - abdidarmawan.com
     - www.abdidarmawan.com
-    - api.abdidarmawan.com
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: production-ingress-ssl-2
+spec:
+  domains:
     - blog.abdidarmawan.com
-    - kangsapu.com
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: production-ingress-ssl-3
+spec:
+  domains:
+    - dashboard.abdidarmawan.id 
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: production-ingress-ssl-4
+spec:
+  domains:
+    - api.abdidarmawan.com
