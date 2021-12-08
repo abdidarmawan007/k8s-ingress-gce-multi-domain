@@ -1,4 +1,4 @@
-# ssl managed gcp
+# ssl managed gcp/gke
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
