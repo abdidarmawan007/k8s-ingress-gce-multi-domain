@@ -1,5 +1,6 @@
 ## Ingress LB GCP global loadbalancer with Static external IP public + SSL managed by GCP ##
-apiVersion: networking.k8s.io/v1beta1
+#apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: production-abdi
@@ -16,41 +17,41 @@ spec:
         paths:
         - backend:
             serviceName: production-frontend-redirect-www
-            servicePort: 80
+            servicePort: 3131
     - host: www.abdidarmawan.com
       http:
         paths:
         - backend:
             serviceName: production-frontend
-            servicePort: 80
+            servicePort: 3131
     - host: api.abdidarmawan.com
       http:
         paths:
-        - path: /*
+        - path: /v1/*
           backend:
-            serviceName: production-api
-            servicePort: 80
+            serviceName: production-api-legacy
+            servicePort: 3131
         - path: /v2/email/*
           backend:
             serviceName: production-api-email
-            servicePort: 80
+            servicePort: 3131
         - path: /v2/push/*
           backend:
             serviceName: production-api-push
-            servicePort: 80
+            servicePort: 3131
         - path: /v2/customer/*
           backend:
             serviceName: production-api-customer
-            servicePort: 80
+            servicePort: 3131
     - host: blog.abdidarmawan.com
       http:
         paths:
         - backend:
             serviceName: production-blog
-            servicePort: 80
+            servicePort: 3131
     - host: kangsapu.com
       http:
         paths:
         - backend:
             serviceName: production-kangsapu
-            servicePort: 80        
+            servicePort: 3131        
