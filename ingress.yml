@@ -43,6 +43,10 @@ spec:
           backend:
             serviceName: production-api-customer
             servicePort: 3131
+        - path: /v2/register/*
+          backend:
+            serviceName: production-api-register
+            servicePort: 3131     
     - host: blog.abdidarmawan.com
       http:
         paths:
